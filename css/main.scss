@@ -25,47 +25,47 @@ $navSize:50;
 }
 
 /*Generate coordinates for nav items and trigger transitions*/
-@mixin menuPos(){
+@mixin menuPos($top, $bottom){
 
 	/*Nav items before direction switches*/
-	$elements1: 4;
+	$elements1: $top;
 	@for $i from 0 to $elements1 {
 	  &:nth-child(#{$i + 2}) {
-		top:-#{($navSize*($elements1/2 - $i))}px;  
-		left:#{($i*$navSize)*1.2}px;
-		animation-delay:#{$i/3}s;
+			top:#{($navSize*($i - 2))}px;
+			left:#{($i*$navSize)}px;
+			animation-delay:#{$i/3}s;
 	  }
 	}
-	
+
 	/*Nav items after direction switches*/
-	$elements2: 2;
-	@for $i from 0 to $elements1 {
-	  &:nth-child(#{$i + 1 + $elements1}) {
-		top:#{$navSize*($i+1)}px;
-		left:#{($navSize*($elements1/2 - ($i + 1)))*1.2}px;
+	$elements2: $bottom;
+	@for $i from 0 to $elements2 {
+	  &:nth-child(#{$i + 2 + $elements1}) {
+		top:#{($navSize*($i + $elements1 - 2))}px;
+		left:#{(($elements2 - $i - 1)*$navSize)}px;
 		animation-delay:#{($i+$elements1)/10}s;
 	  }
 	}
 	&.transitioning{
 		/*Nav items before direction switches*/
-		$elements1: 4;
+		$elements1: $top;
 		@for $i from 0 to $elements1 {
 		  &:nth-child(#{$i + 2}) {
-			-webkit-transition-delay:#{$i/10}s;
-			transition-delay:#{$i/10}s;
+				-webkit-transition-delay:#{$i/10}s;
+				transition-delay:#{$i/10}s;
 		  }
 		}
-		
+
 		/*Nav items after direction switches*/
-		$elements2: 2;
+		$elements2: $bottom;
 		@for $i from 0 to $elements1 {
 		  &:nth-child(#{$i + 1 + $elements1}) {
-			transition-delay:#{($i+$elements1)/10}s;
-			-webkit-transition-delay:#{($i+$elements1)/10}s;
+				transition-delay:#{($i+$elements1)/10}s;
+				-webkit-transition-delay:#{($i+$elements1)/10}s;
 		  }
 		}
 	}
-	
+
 	/*Transitions for the full set after assigning delays*/
 	&{
 		transform:scale(1);
@@ -107,51 +107,51 @@ body{
   background:#BEBCCC;
 }
 
-nav{ 
+nav{
   position:relative;
 
   ul{
-    position:fixed;
-    list-style-type:none;
-    padding:0;
+	position:fixed;
+	list-style-type:none;
+	padding:0;
 
     /*Position the parent menu, not sub-menus*/
     &:first-child{
-      top:50%;
-	  margin-top:-25px;
-      left:30px;
+		top:50%;
+		margin-top:-#{$navSize/2}px;
+		left:#{$navSize}px;
     }
 
     /*Calculate positioning for expanded buttons*/
     &.open{
       li{
-        @include menuPos();
+        @include menuPos(4,3);
       }
     }
 
     /*Nav Button Styling*/
     li{
-      position:absolute;
-      display:table;
-      cursor:pointer;
-      width:#{$navSize}px;
-      height:#{$navSize}px;
-	  top:0;
-	  left:0;
-      text-align:center;
-      background:#F33515;
-      border-radius:100%;
-      z-index:1;
-	  transition:all 0.3s ease-out;
-	  -webkit-transform: translate3d(0,0,0) scale(0.1); 
-	  transform: translate3d(0,0,0) scale(0.1); 
-	  @include menuOutDelay();
+		position:absolute;
+		display:table;
+		cursor:pointer;
+		width:#{$navSize}px;
+		height:#{$navSize}px;
+		top:0;
+		left:0;
+		text-align:center;
+		background:#F33515;
+		border-radius:100%;
+		z-index:1;
+		transition:all 0.3s ease-out;
+		-webkit-transform: translate3d(0,0,0) scale(0.1);
+		transform: translate3d(0,0,0) scale(0.1);
+		@include menuOutDelay();
 
 
       /*Set styles for the expander button*/
       &:first-child{
-        z-index:2;
-        font-size:1em;
+		z-index:2;
+		font-size:1em;
 		transform:scale(1);
       }
       p,a{
@@ -174,11 +174,10 @@ nav{
         top:0;
         left:0;
       }
-	  &:hover{
-		background:#523EEA;
-		transition-delay:0s!important;
-	  }
+	  	&:hover{
+			background:#523EEA;
+			transition-delay:0s!important;
+		}
     }
-
   }
 }
