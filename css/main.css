@@ -1,25 +1,17 @@
 @keyframes float {
   0% {
-    margin-top: 0px; }
-  25% {
-    margin-top: 5px; }
+    background: #F33515; }
   50% {
-    margin-top: 0px; }
-  75% {
-    margin-top: -5px; }
+    background: #EA6E59; }
   100% {
-    margin-top: 0px; } }
+    background: #F33515; } }
 @-webkit-keyframes float {
   0% {
-    margin-top: 0px; }
-  25% {
-    margin-top: 5px; }
+    background: #F33515; }
   50% {
-    margin-top: 0px; }
-  75% {
-    margin-top: -5px; }
+    background: #EA6E59; }
   100% {
-    margin-top: 0px; } }
+    background: #F33515; } }
 /*Generate coordinates for nav items and trigger transitions*/
 /*Reverse the direction of nav buttons collapsing*/
 body {
@@ -49,7 +41,8 @@ nav {
       margin-left: -26px;
       margin-top: 0; }
       nav ul:first-child li:first-child {
-        border-radius: 0px 0px 50px 50px; }
+        border-radius: 0px 0px 50px 50px;
+        animation: none; }
         nav ul:first-child li:first-child:hover {
           background: #F33515;
           padding-top: 5px; }
@@ -60,41 +53,33 @@ nav {
       /*Nav items after direction switches*/
       /*Transitions for the full set after assigning delays*/ }
       nav ul.open li:nth-child(2) {
-        left: -200px;
+        left: -150px;
         top: 25px;
         animation-delay: 0s; }
       nav ul.open li:nth-child(3) {
-        left: -150px;
-        top: 75px;
-        animation-delay: 0.33333s; }
-      nav ul.open li:nth-child(4) {
         left: -100px;
-        top: 125px;
-        animation-delay: 0.66667s; }
-      nav ul.open li:nth-child(5) {
-        left: -50px;
-        top: 175px;
-        animation-delay: 1s; }
-      nav ul.open li:nth-child(6) {
-        left: 0px;
-        top: 225px;
-        animation-delay: 1.33333s; }
-      nav ul.open li:nth-child(7) {
-        left: 50px;
-        top: 175px;
-        animation-delay: 0.5s; }
-      nav ul.open li:nth-child(8) {
-        left: 100px;
-        top: 125px;
-        animation-delay: 0.6s; }
-      nav ul.open li:nth-child(9) {
-        left: 150px;
         top: 75px;
-        animation-delay: 0.7s; }
-      nav ul.open li:nth-child(10) {
-        left: 200px;
+        animation-delay: 0.31746s; }
+      nav ul.open li:nth-child(4) {
+        left: -50px;
+        top: 125px;
+        animation-delay: 0.63492s; }
+      nav ul.open li:nth-child(5) {
+        left: 0px;
+        top: 175px;
+        animation-delay: 0.95238s; }
+      nav ul.open li:nth-child(6) {
+        left: 50px;
+        top: 125px;
+        animation-delay: 1.26984s; }
+      nav ul.open li:nth-child(7) {
+        left: 100px;
+        top: 75px;
+        animation-delay: 1.5873s; }
+      nav ul.open li:nth-child(8) {
+        left: 150px;
         top: 25px;
-        animation-delay: 0.8s; }
+        animation-delay: 1.90476s; }
       nav ul.open li.transitioning {
         /*Nav items before direction switches*/
         /*Nav items after direction switches*/ }
@@ -110,9 +95,9 @@ nav {
         nav ul.open li.transitioning:nth-child(5) {
           -webkit-transition-delay: 0.3s;
           transition-delay: 0.3s; }
-        nav ul.open li.transitioning:nth-child(6) {
-          -webkit-transition-delay: 0.4s;
-          transition-delay: 0.4s; }
+        nav ul.open li.transitioning:nth-child(5) {
+          transition-delay: 0.4s;
+          -webkit-transition-delay: 0.4s; }
         nav ul.open li.transitioning:nth-child(6) {
           transition-delay: 0.5s;
           -webkit-transition-delay: 0.5s; }
@@ -122,22 +107,16 @@ nav {
         nav ul.open li.transitioning:nth-child(8) {
           transition-delay: 0.7s;
           -webkit-transition-delay: 0.7s; }
-        nav ul.open li.transitioning:nth-child(9) {
-          transition-delay: 0.8s;
-          -webkit-transition-delay: 0.8s; }
-        nav ul.open li.transitioning:nth-child(10) {
-          transition-delay: 0.9s;
-          -webkit-transition-delay: 0.9s; }
       nav ul.open li {
         transform: scale(1);
-        -webkit-transform: scale(1);
-        animation: float 1.62s linear infinite; }
+        -webkit-transform: scale(1); }
       nav ul.open li:first-child {
         animation: none; }
     nav ul li {
       position: absolute;
       display: table;
       cursor: pointer;
+      white-space: nowrap;
       border: 2px solid #D22D11;
       width: 50px;
       height: 50px;
@@ -150,6 +129,7 @@ nav {
       transition: all 0.3s ease-out;
       -webkit-transform: translate3d(0, 0, 0) scale(0.1);
       transform: translate3d(0, 0, 0) scale(0.1);
+      animation: float 3s linear infinite;
       /*Set styles for the expander button*/ }
       nav ul li.transitioning {
         /*Nav items before direction switches*/
@@ -170,10 +150,10 @@ nav {
           transition-delay: 0.6s; }
         nav ul li.transitioning:nth-child(8) {
           transition-delay: 0.7s; }
-        nav ul li.transitioning:nth-child(9) {
-          transition-delay: 0.8s; }
-        nav ul li.transitioning:nth-child(10) {
-          transition-delay: 0.9s; }
+      nav ul li:hover {
+        transition-delay: 0s !important; }
+        nav ul li:hover p, nav ul li:hover a {
+          opacity: 0.7; }
       nav ul li:first-child {
         z-index: 2;
         font-size: 1em;
@@ -184,6 +164,7 @@ nav {
         top: 50%;
         left: 50%;
         transform: translateX(-50%);
+        transform-origin: center center;
         margin-top: -0.5em;
         line-height: 1em;
         color: #FFF;
@@ -191,13 +172,11 @@ nav {
         font-weight: 900;
         display: table-cell;
         vertical-align: middle;
-        text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25); }
+        text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease-out; }
       nav ul li ul {
         position: absolute;
         top: 0;
         left: 0; }
-      nav ul li:hover {
-        background: #523EEA;
-        transition-delay: 0s !important; }
 
 /*# sourceMappingURL=main.css.map */

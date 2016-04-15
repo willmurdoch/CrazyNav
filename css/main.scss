@@ -1,23 +1,17 @@
 $navSize:50;
 $offset:25;
-$top: 5;
-$bottom: 4;
+$top: 4;
+$bottom: 3;
 
 @mixin floatAnim(){
 	0%{
-		margin-top:0px;
-	}
-	25%{
-		margin-top:#{$navSize/10}px;
+		background:#F33515;
 	}
 	50%{
-		margin-top:0px;
-	}
-	75%{
-		margin-top:-#{$navSize/10}px;
+		background:#EA6E59;
 	}
 	100%{
-		margin-top:0px;
+		background:#F33515;
 	}
 }
 @keyframes float{
@@ -36,7 +30,7 @@ $bottom: 4;
 	  &:nth-child(#{$i + 2}) {
 		left:#{-$navSize*($elements1 - $i) + $navSize}px;
 		top:#{($i*$navSize + $offset)}px;
-		animation-delay:#{$i/3}s;
+		animation-delay:#{$i/3.15}s;
 	  }
 	}
 
@@ -46,7 +40,7 @@ $bottom: 4;
 	  &:nth-child(#{$i + 2 + $elements1}) {
 		left:#{$navSize*(($i - 1 +$elements1) - $elements2) + $navSize}px;
 		top:#{(($elements2 - $i - 1)*$navSize)  + $offset}px;
-		animation-delay:#{($i+$elements1)/10}s;
+		animation-delay:#{($i+$elements1)/3.15}s;
 	  }
 	}
 	&.transitioning{
@@ -73,7 +67,6 @@ $bottom: 4;
 	&{
 		transform:scale(1);
 		-webkit-transform:scale(1);
-		animation: float 1.62s linear infinite;
 	}
 	&:first-child{
 		animation: none;
@@ -131,6 +124,7 @@ nav{
 		
 		li:first-child{
 			border-radius:0px 0px #{$navSize}px #{$navSize}px;
+			animation:none;
 			
 			&:hover{
 				background:#F33515;
@@ -155,6 +149,7 @@ nav{
 		position:absolute;
 		display:table;
 		cursor:pointer;
+		white-space:nowrap;
 		border:2px solid #D22D11;
 		width:#{$navSize}px;
 		height:#{$navSize}px;
@@ -167,8 +162,15 @@ nav{
 		transition:all 0.3s ease-out;
 		-webkit-transform: translate3d(0,0,0) scale(0.1);
 		transform: translate3d(0,0,0) scale(0.1);
+		animation: float 3s linear infinite;
 		@include menuOutDelay();
-
+		
+		&:hover{
+			transition-delay:0s!important;
+			p,a{
+				opacity:0.7;
+			}
+		}
 
       /*Set styles for the expander button*/
       &:first-child{
@@ -182,6 +184,7 @@ nav{
         top:50%;
         left:50%;
         transform:translateX(-50%);
+		transform-origin:center center;
         margin-top:-0.5em;
         line-height:1em;
         color:#FFF;
@@ -190,16 +193,13 @@ nav{
         display:table-cell;
         vertical-align:middle;
 		text-shadow:0px 0px 20px rgba(0,0,0,0.25);
+		transition:all 0.3s ease-out;
       }
       ul{
         position:absolute;
         top:0;
         left:0;
       }
-	  	&:hover{
-			background:#523EEA;
-			transition-delay:0s!important;
-		}
     }
   }
 }
